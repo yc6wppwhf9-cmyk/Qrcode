@@ -100,8 +100,10 @@ const localHosts = ["localhost", "127.0.0.1", "::1"];
 const isPublicHttpPage =
   window.location.protocol.startsWith("http") &&
   !localHosts.includes(window.location.hostname);
+const isPublicPreview =
+  new URLSearchParams(window.location.search).get("preview") === "public";
 
-if (isPublicHttpPage) {
+if (isPublicHttpPage || isPublicPreview) {
   document.body.classList.add("public-view");
   qrPanel.setAttribute("aria-hidden", "true");
 }
