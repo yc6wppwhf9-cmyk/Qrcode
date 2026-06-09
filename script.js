@@ -3,8 +3,9 @@ const socials = [
     name: "Website",
     handle: "prioritybags.in",
     url: "https://prioritybags.in/",
-    icon: "assets/icons/website.svg",
+    icon: "assets/logo.png",
     color: "#3d759e",
+    logo: true,
   },
   {
     name: "Instagram",
@@ -49,7 +50,7 @@ function renderLinks() {
     .map(
       (social) => `
         <a class="social-link" href="${social.url}" target="_blank" rel="noreferrer" style="--accent: ${social.color}">
-          <span class="icon" aria-hidden="true">
+          <span class="icon ${social.logo ? "brand-icon" : ""}" aria-hidden="true">
             <img src="${social.icon}" alt="" loading="lazy" />
           </span>
           <span class="link-text">

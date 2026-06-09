@@ -157,6 +157,12 @@ h1 {
   display: block;
 }
 
+.brand-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .link-text {
   min-width: 0;
 }
