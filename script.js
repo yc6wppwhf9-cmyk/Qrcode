@@ -35,6 +35,7 @@ const qrContainer = document.querySelector("#qrcode");
 const pageUrlInput = document.querySelector("#pageUrl");
 const refreshButton = document.querySelector("#refreshQr");
 const downloadButton = document.querySelector("#downloadQr");
+const qrPanel = document.querySelector("#qrPanel");
 
 let qrCode;
 
@@ -99,6 +100,11 @@ const localHosts = ["localhost", "127.0.0.1", "::1"];
 const isPublicHttpPage =
   window.location.protocol.startsWith("http") &&
   !localHosts.includes(window.location.hostname);
+
+if (isPublicHttpPage) {
+  document.body.classList.add("public-view");
+  qrPanel.setAttribute("aria-hidden", "true");
+}
 
 pageUrlInput.value = isPublicHttpPage ? window.location.href : defaultPublicUrl;
 
