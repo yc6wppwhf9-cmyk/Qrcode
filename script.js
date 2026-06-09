@@ -64,47 +64,62 @@ function renderLinks() {
 
 function renderQr(value) {
   qrContainer.innerHTML = "";
-  const image = document.createElement("img");
-  image.src = `https://api.qrserver.com/v1/create-qr-code/?size=512x512&margin=16&data=${encodeURIComponent(value)}`;
-  image.alt = "QR code for Priority Bags social links";
-  image.crossOrigin = "anonymous";
-  qrContainer.appendChild(image);
+  const canvas = document.createElement("canvas");
+  const size = 512;
+  canvas.width = size;
+  canvas.height = size;
+  qrContainer.appendChild(canvas);
+
+  const context = canvas.getContext("2d");
+  const qrImage = new Image();
+  const logoImage = new Image();
+  qrImage.crossOrigin = "anonymous";
+  logoImage.crossOrigin = "anonymous";
+
+  qrImage.onload = () => {
+    context.drawImage(qrImage, 0, 0, size, size);
+    logoImage.src = "assets/logo.png";
+  };
+
+  logoImage.onload = () => {
+    const logoBox = 92;
+    const logoPadding = 14;
+    const x = (size - logoBox) / 2;
+    const y = (size - logoBox) / 2;
+
+    context.fillStyle = "#ffffff";
+    context.beginPath();
+    context.roundRect(
+      x - logoPadding,
+      y - logoPadding,
+      logoBox + logoPadding * 2,
+      logoBox + logoPadding * 2,
+      12,
+    );
+    context.fill();
+    context.drawImage(logoImage, x, y, logoBox, logoBox);
+  };
+
+  qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=16&data=${encodeURIComponent(value)}`;
 }
 
 function getQrImageUrl() {
-  const image = qrContainer.querySelector("img");
+  const canvas = qrContainer.querySelector("canvas");
 
-  if (image?.src) {
-    return image.src;
+  if (canvas) {
+    return canvas.toDataURL("image/png");
   }
 
   return "";
 }
 
-async function downloadQr() {
+function downloadQr() {
   const imageUrl = getQrImageUrl();
   if (!imageUrl) return;
-
-  try {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    const objectUrl = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = objectUrl;
-    link.download = "priority-bags-social-qr.png";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(objectUrl);
-    return;
-  } catch (error) {
-    console.warn("QR download fell back to direct image link.", error);
-  }
 
   const link = document.createElement("a");
   link.href = imageUrl;
   link.download = "priority-bags-social-qr.png";
-  link.target = "_blank";
   document.body.appendChild(link);
   link.click();
   link.remove();
