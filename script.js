@@ -3,28 +3,28 @@ const socials = [
     name: "Instagram",
     handle: "@priority.bags",
     url: "https://www.instagram.com/priority.bags?igsh=OXJ6d3I5MXM0djU3",
-    icon: "IG",
+    icon: "assets/icons/instagram.svg",
     color: "#d95f43",
   },
   {
     name: "Facebook",
     handle: "Priority Bags",
     url: "https://www.facebook.com/share/16nwvio56J/?mibextid=wwXIfr",
-    icon: "FB",
+    icon: "assets/icons/facebook.svg",
     color: "#1877f2",
   },
   {
     name: "YouTube",
     handle: "@prioritybags",
     url: "https://youtube.com/@prioritybags?si=MvAj7X6_M2L_-ago",
-    icon: "YT",
+    icon: "assets/icons/youtube.svg",
     color: "#ff0033",
   },
   {
     name: "LinkedIn",
     handle: "High Spirit Commercial Ventures Pvt. Ltd.",
     url: "https://www.linkedin.com/company/hscvpl/",
-    icon: "IN",
+    icon: "assets/icons/linkedin.svg",
     color: "#0a66c2",
   },
 ];
@@ -43,7 +43,9 @@ function renderLinks() {
     .map(
       (social) => `
         <a class="social-link" href="${social.url}" target="_blank" rel="noreferrer" style="--accent: ${social.color}">
-          <span class="icon" aria-hidden="true">${social.icon}</span>
+          <span class="icon" aria-hidden="true">
+            <img src="${social.icon}" alt="" loading="lazy" />
+          </span>
           <span class="link-text">
             <span class="link-title">${social.name}</span>
             <span class="link-handle">${social.handle}</span>

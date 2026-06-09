@@ -151,6 +151,12 @@ h1 {
   font-weight: 800;
 }
 
+.icon img {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
 .link-text {
   min-width: 0;
 }
