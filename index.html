@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priority Bags Social Handles</title>
+    <meta
+      name="description"
+      content="Scan once and find all official Priority Bags social handles."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="profile" aria-label="Social profile links">
+        <div class="brand-lockup">
+          <img
+            class="brand-logo"
+            src="assets/logo.png"
+            alt="Priority Bags logo"
+            onerror="this.hidden = true; this.nextElementSibling.hidden = false;"
+          />
+          <div class="brand-mark" aria-hidden="true" hidden>PB</div>
+        </div>
+        <p class="eyebrow">Official social links</p>
+        <h1>Priority Bags</h1>
+        <p class="intro">
+          Scan the QR code or tap a link below to connect with us across our
+          social handles.
+        </p>
+
+        <div class="links" id="socialLinks"></div>
+      </section>
+
+      <aside class="qr-panel" aria-label="QR code generator">
+        <div class="qr-wrap">
+          <div id="qrcode" aria-label="QR code"></div>
+        </div>
+        <label class="url-field" for="pageUrl">QR destination URL</label>
+        <input id="pageUrl" type="url" spellcheck="false" />
+        <div class="actions">
+          <button id="refreshQr" type="button">
+            <span aria-hidden="true">↻</span>
+            Update QR
+          </button>
+          <button id="downloadQr" type="button">
+            <span aria-hidden="true">↓</span>
+            Download PNG
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
