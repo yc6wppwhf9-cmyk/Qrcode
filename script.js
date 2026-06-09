@@ -83,8 +83,8 @@ function renderQr(value) {
   };
 
   logoImage.onload = () => {
-    const logoBox = 92;
-    const logoPadding = 14;
+    const logoBox = 54;
+    const logoPadding = 9;
     const x = (size - logoBox) / 2;
     const y = (size - logoBox) / 2;
 
@@ -101,7 +101,7 @@ function renderQr(value) {
     context.drawImage(logoImage, x, y, logoBox, logoBox);
   };
 
-  qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=16&data=${encodeURIComponent(value)}`;
+  qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=24&ecc=H&data=${encodeURIComponent(value)}`;
 }
 
 function getQrImageUrl() {
